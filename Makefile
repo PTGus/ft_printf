@@ -6,7 +6,7 @@
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 09:43:19 by gumendes          #+#    #+#              #
-#    Updated: 2025/01/21 16:33:09 by gumendes         ###   ########.fr        #
+#    Updated: 2025/02/10 17:11:29 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,22 @@ RM				=	rm -f
 CFLAGS			=	-Wall -Wextra -Werror -g
 
 # Library Paths
-LIBFT_PATH		=	Libft/libft
+LIBFT_PATH		=	../libft
 
 # Libraries
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
 # Includes
-INCLUDES = -I$(LIBFT_PATH)
+INCLUDES = -I . -I $(SRC_PATH)
 
 # Output Name
 NAME = libftprintf.a
 
 # Source Files
-SRC = ft_printf.c ft_printlowhexa.c ft_printnbr.c ft_printptr.c \
-	  ft_printstr.c ft_printuphexa.c ft_printutils.c ft_printunbr.c
+SRC_PATH = src
+
+SRC = $(SRC_PATH)/ft_printf.c $(SRC_PATH)/ft_printlowhexa.c $(SRC_PATH)/ft_printnbr.c $(SRC_PATH)/ft_printptr.c \
+	  $(SRC_PATH)/ft_printstr.c $(SRC_PATH)/ft_printuphexa.c $(SRC_PATH)/ft_printutils.c $(SRC_PATH)/ft_printunbr.c
 
 # Object Files
 OBJ = $(SRC:.c=.o)
@@ -51,10 +53,14 @@ $(NAME): $(OBJ) $(LIBFT_OBJ)
 	ar rcs $(NAME) $(OBJ) $(LIBFT_OBJ)
 
 checker:
-	@if [ -d "Libft" ]; then echo "$(GREEN)[LIBFT FOLDER FOUND]$(END)"; else make download; fi
+	@if [ -d "$(LIBFT_PATH)" ]; then echo "$(GREEN)[LIBFT FOLDER FOUND]$(END)"; else make download; fi
 
 download:
-	git clone git@github.com:PTGus/Libft.git Libft
+	echo "$(GREEN)[CLONING LIBFT]$(END)"
+	@git clone git@github.com:PTGus/libft.git $(LIBFT_PATH)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)
@@ -62,7 +68,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-	rm -rf Libft
+	@if [ -d "$(LIBFT_PATH)" ]; then rm -rf $(LIBFT_PATH); fi
 
 re: fclean all
 

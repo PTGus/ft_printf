@@ -6,7 +6,7 @@
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 09:43:19 by gumendes          #+#    #+#              #
-#    Updated: 2025/02/10 17:11:29 by gumendes         ###   ########.fr        #
+#    Updated: 2025/02/10 17:14:21 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,11 @@ all: checker $(LIBFT) $(NAME)
 
 # Build the libft library
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_PATH)
+	@$(MAKE) -C $(LIBFT_PATH)
 
 # Build the printf library
 $(NAME): $(OBJ) $(LIBFT_OBJ)
-	ar rcs $(NAME) $(OBJ) $(LIBFT_OBJ)
+	@ar rcs $(NAME) $(OBJ) $(LIBFT_OBJ)
 
 checker:
 	@if [ -d "$(LIBFT_PATH)" ]; then echo "$(GREEN)[LIBFT FOLDER FOUND]$(END)"; else make download; fi
@@ -60,14 +60,14 @@ download:
 	@git clone git@github.com:PTGus/libft.git $(LIBFT_PATH)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
-	$(MAKE) -C $(LIBFT_PATH) clean
+	@$(RM) $(OBJ)
+	@$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@if [ -d "$(LIBFT_PATH)" ]; then rm -rf $(LIBFT_PATH); fi
 
 re: fclean all

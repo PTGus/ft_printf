@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printunbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:34:49 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/07 16:50:25 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:56:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_printunbr(unsigned int nbr)
 
 	i = nbr;
 	len = 0;
-	if (i >= 0 && i <= 9)
+	if (i >= 1 && i <= 9)
 	{
 		ft_putchar_fd(i + '0', 1);
 		len++;

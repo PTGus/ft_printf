@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 09:43:19 by gumendes          #+#    #+#              #
-#    Updated: 2025/02/12 10:34:19 by gumendes         ###   ########.fr        #
+#    Updated: 2025/02/13 13:11:13 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME): $(OBJ) $(LIBFT_OBJ)
 	@ar rcs $(NAME) $(OBJ) $(LIBFT_OBJ)
 
 checker:
-	@if [ -d "$(LIBFT_PATH)" ]; then echo "$(GREEN)[LIBFT FOLDER FOUND]$(END)"; else make download; fi
+	@if [ -d "$(LIBFT_PATH)" ]; then echo "$(GREEN)[LIBFT DEPENDENCIES FOUND]$(END)"; else make download; fi
 
 download:
 	echo "$(GREEN)[CLONING LIBFT]$(END)"
